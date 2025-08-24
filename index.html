@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdan Syakura | AI & Backend Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .card-glass {
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .skill-pill {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .glow {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+        .glow:hover {
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 3D Background -->
+    <div id="canvas-container" class="fixed top-0 left-0 w-full h-full -z-10 opacity-20"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold gradient-text">ABDAN SYAKURA</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all">Home</a>
+                        <a href="#about" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all">About</a>
+                        <a href="#skills" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all">Skills</a>
+                        <a href="#experience" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all">Experience</a>
+                        <a href="#projects" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all">Projects</a>
+                        <a href="#contact" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="mobile-menu-button p-2 rounded-md text-gray-400 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden fixed inset-0 z-40 bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg">
+        <div class="flex flex-col items-center justify-center h-full">
+            <a href="#home" class="block px-3 py-4 text-xl text-gray-300 hover:text-white transition-all">Home</a>
+            <a href="#about" class="block px-3 py-4 text-xl text-gray-300 hover:text-white transition-all">About</a>
+            <a href="#skills" class="block px-3 py-4 text-xl text-gray-300 hover:text-white transition-all">Skills</a>
+            <a href="#experience" class="block px-3 py-4 text-xl text-gray-300 hover:text-white transition-all">Experience</a>
+            <a href="#projects" class="block px-3 py-4 text-xl text-gray-300 hover:text-white transition-all">Projects</a>
+            <a href="#contact" class="block px-3 py-4 text-xl text-gray-300 hover:text-white transition-all">Contact</a>
+            <button class="mt-8 p-2 rounded-md text-gray-400 hover:text-white focus:outline-none">
+                <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">Abdan Syakura</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-gray-300">
+                    AI Developer & Backend Engineer
+                </h2>
+                <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-lg">
+                    Specializing in AI development with Python/PyTorch and building scalable backend systems with Golang.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <a href="#contact" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-medium text-white hover:opacity-90 transition-all glow">
+                        Contact Me
+                    </a>
+                    <a href="#projects" class="px-8 py-3 border border-gray-600 rounded-full font-medium text-white hover:bg-gray-800 transition-all">
+                        View Projects
+                    </a>
+                </div>
+            </div>
+            <div class="relative flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gray-700 glow floating">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-30"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-6xl font-bold text-white opacity-70">AS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">About Me</h2>
+            <p class="text-gray-400 max-w-3xl mx-auto">A passionate developer bridging the gap between AI and backend systems</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card-glass p-8 rounded-xl">
+                <div class="text-blue-400 text-4xl mb-4">🎓</div>
+                <h3 class="text-xl font-semibold mb-3">Education</h3>
+                <p class="text-gray-400 mb-2"><span class="font-medium text-white">Ahmad Dahlan University</span> - Informatics Engineering (2021-Present)</p>
+                <p class="text-gray-400"><span class="font-medium text-white">National Vocational School Berbah</span> - Computer Engineering (2018-2021)</p>
+            </div>
+            
+            <div class="card-glass p-8 rounded-xl">
+                <div class="text-purple-400 text-4xl mb-4">💼</div>
+                <h3 class="text-xl font-semibold mb-3">Experience</h3>
+                <p class="text-gray-400 mb-2"><span class="font-medium text-white">IBM AI Intern</span> - Developed LLM chatbot solutions</p>
+                <p class="text-gray-400"><span class="font-medium text-white">Network Technician</span> - Assembled and tested 30+ custom PCs</p>
+            </div>
+            
+            <div class="card-glass p-8 rounded-xl">
+                <div class="text-green-400 text-4xl mb-4">🏆</div>
+                <h3 class="text-xl font-semibold mb-3">Certifications</h3>
+                <p class="text-gray-400 mb-2"><span class="font-medium text-white">IBM Advanced AI</span> - Kampus Merdeka Program</p>
+                <p class="text-gray-400"><span class="font-medium text-white">Backend Engineer</span> - Altera Academy (Golang)</p>
+            </div>
+        </div>
+        
+        <div class="mt-12 card-glass p-8 rounded-xl">
+            <h3 class="text-xl font-semibold mb-4">Summary</h3>
+            <p class="text-gray-400">
+                A final-year Computer Science student specializing in AI and Backend Development. Certified Backend Engineer (Golang) and graduate of the Kampus Merdeka Advanced AI program, with project experience developing an LLM chatbot with IBM. Proficient with backend integration using Python (Flask) and experienced in building containerized microservices with Golang, Docker, and MongoDB.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-4">
+                <div class="flex items-center">
+                    <div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+                    <span class="text-gray-300">Kab. Bantul, DI Yogyakarta</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
+                    <span class="text-gray-300">081947130308</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                    <span class="text-gray-300">abdansbgr0@gmail.com</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Technical Skills</h2>
+            <p class="text-gray-400 max-w-3xl mx-auto">Technologies I work with to build innovative solutions</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card-glass p-8 rounded-xl">
+                <h3 class="text-xl font-semibold mb-6 flex items-center">
+                    <span class="w-4 h-4 rounded-full bg-blue-500 mr-3"></span>
+                    <span>Backend Development</span>
+                </h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">Golang</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">PHP</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">RESTful API</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">Docker</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">MongoDB</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">MySQL</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">Microservices</span>
+                </div>
+            </div>
+            
+            <div class="card-glass p-8 rounded-xl">
+                <h3 class="text-xl font-semibold mb-6 flex items-center">
+                    <span class="w-4 h-4 rounded-full bg-purple-500 mr-3"></span>
+                    <span>Frontend Development</span>
+                </h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">Vue.js</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">JavaScript</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">HTML/CSS</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">Tailwind CSS</span>
+                </div>
+            </div>
+            
+            <div class="card-glass p-8 rounded-xl">
+                <h3 class="text-xl font-semibold mb-6 flex items-center">
+                    <span class="w-4 h-4 rounded-full bg-green-500 mr-3"></span>
+                    <span>AI & Machine Learning</span>
+                </h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">Python</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">PyTorch</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">LLM</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">Generative AI</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">Transformers</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">Sentiment Analysis</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">NLP</span>
+                </div>
+            </div>
+            
+            <div class="card-glass p-8 rounded-xl">
+                <h3 class="text-xl font-semibold mb-6 flex items-center">
+                    <span class="w-4 h-4 rounded-full bg-yellow-500 mr-3"></span>
+                    <span>Tools & Platforms</span>
+                </h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">GitHub</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">Docker</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">IBM Cloud</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">Linux</span>
+                    <span class="skill-pill px-4 py-2 rounded-full text-sm">VS Code</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Work Experience</h2>
+            <p class="text-gray-400 max-w-3xl mx-auto">My professional journey and accomplishments</p>
+        </div>
+        
+        <div class="space-y-8">
+            <div class="card-glass p-8 rounded-xl">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                    <h3 class="text-xl font-semibold">IBM Artificial Intelligence Intern | Infinite Learning</h3>
+                    <span class="text-blue-400">2024</span>
+                </div>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li>Implemented projects in Machine Learning Data Science and Data Analysis</li>
+                    <li>Developed a chatbot using LLM in collaboration with IBM to deliver IBM Artificial Intelligence solutions</li>
+                    <li>Worked on advanced AI models and their integration with backend systems</li>
+                </ul>
+            </div>
+            
+            <div class="card-glass p-8 rounded-xl">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                    <h3 class="text-xl font-semibold">Computer Network Technician Intern | SG Computer</h3>
+                    <span class="text-purple-400">2020</span>
+                </div>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li>Successfully assembled and tested over 30 custom-built PCs</li>
+                    <li>Ensured all components functioned optimally before customer handover</li>
+                    <li>Gained hands-on experience with hardware troubleshooting and system configuration</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Featured Projects</h2>
+            <p class="text-gray-400 max-w-3xl mx-auto">Some of my recent work showcasing my skills</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card-glass p-8 rounded-xl hover:transform hover:scale-105 transition-all duration-300 glow">
+                <div class="mb-6 h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <span class="text-4xl">🤖</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Fashion Recommendation Chatbot</h3>
+                <p class="text-gray-400 mb-4">
+                    A Large Language Model (LLM) chatbot that provides personalized outfit suggestions based on user preferences and current trends.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 bg-blue-900 bg-opacity-50 rounded-full text-xs">Golang</span>
+                    <span class="px-3 py-1 bg-purple-900 bg-opacity-50 rounded-full text-xs">LLM</span>
+                    <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">MongoDB</span>
+                </div>
+                <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                    View Details
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="card-glass p-8 rounded-xl hover:transform hover:scale-105 transition-all duration-300 glow">
+                <div class="mb-6 h-48 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
+                    <span class="text-4xl">🛒</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">E-commerce Platform with AI Chatbot</h3>
+                <p class="text-gray-400 mb-4">
+                    A full-stack e-commerce site with JWT authentication, admin dashboard, and integrated AI chatbot for user assistance.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 bg-blue-900 bg-opacity-50 rounded-full text-xs">Golang</span>
+                    <span class="px-3 py-1 bg-purple-900 bg-opacity-50 rounded-full text-xs">Vue.js</span>
+                    <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">AI Chatbot</span>
+                </div>
+                <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                    View Details
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="card-glass p-8 rounded-xl hover:transform hover:scale-105 transition-all duration-300 glow">
+                <div class="mb-6 h-48 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center">
+                    <span class="text-4xl">📊</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Sentiment Analysis with IndoBERT</h3>
+                <p class="text-gray-400 mb-4">
+                    Thesis project analyzing product reviews from Toko Pasar Stan Jogja using advanced NLP techniques with IndoBERT.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 bg-blue-900 bg-opacity-50 rounded-full text-xs">Python</span>
+                    <span class="px-3 py-1 bg-purple-900 bg-opacity-50 rounded-full text-xs">Transformers</span>
+                    <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">NLP</span>
+                </div>
+                <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                    View Details
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="card-glass p-8 rounded-xl hover:transform hover:scale-105 transition-all duration-300 glow">
+                <div class="mb-6 h-48 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg flex items-center justify-center">
+                    <span class="text-4xl">🔌</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Microservices Architecture</h3>
+                <p class="text-gray-400 mb-4">
+                    Containerized microservices built with Golang, Docker, and MongoDB for scalable backend infrastructure.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 bg-blue-900 bg-opacity-50 rounded-full text-xs">Golang</span>
+                    <span class="px-3 py-1 bg-purple-900 bg-opacity-50 rounded-full text-xs">Docker</span>
+                    <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">Microservices</span>
+                </div>
+                <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                    View Details
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Get In Touch</h2>
+            <p class="text-gray-400 max-w-3xl mx-auto">Feel free to reach out for collaborations or just to say hello!</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="card-glass p-8 rounded-xl">
+                <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-900 bg-opacity-50 flex items-center justify-center mr-4">
+                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-gray-300 font-medium">Location</h4>
+                            <p class="text-gray-500">Kab. Bantul, DI Yogyakarta</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-purple-900 bg-opacity-50 flex items-center justify-center mr-4">
+                            <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-gray-300 font-medium">Phone</h4>
+                            <p class="text-gray-500">081947130308</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-900 bg-opacity-50 flex items-center justify-center mr-4">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-gray-300 font-medium">Email</h4>
+                            <p class="text-gray-500">abdansbgr0@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-yellow-900 bg-opacity-50 flex items-center justify-center mr-4">
+                            <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-gray-300 font-medium">Social Media</h4>
+                            <div class="flex space-x-4 mt-2">
+                                <a href="https://github.com/AbdanSyakura" class="text-gray-500 hover:text-white transition-colors">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                                    </svg>
+                                </a>
+                                <a href="https://www.linkedin.com/in/abdansyakura23" class="text-gray-500 hover:text-white transition-colors">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-xl font-bold gradient-text">ABDAN SYAKURA</span>
+                    <p class="text-gray-500 mt-2">AI Developer & Backend Engineer</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/AbdanSyakura" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/abdansyakura23" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                <p>© 2024 Abdan Syakura. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking close button
+        const closeMobileMenuButton = mobileMenu.querySelector('button');
+        closeMobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // 3D Background Animation
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+        
+        // Create a torus knot geometry
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshBasicMaterial({ 
+            color: 0x3b82f6,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.2
+        });
+        const knot = new THREE.Mesh(geometry, material);
+        scene.add(knot);
+        
+        camera.position.z = 30;
+        
+        // Add orbit controls
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.5;
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            knot.rotation.x += 0.002;
+            knot.rotation.y += 0.003;
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+        
+        // Add scroll animation for sections
+        const sections = document.querySelectorAll('section');
+        
+        function checkScroll() {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Initialize section animations
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
+</body>
+</html>
