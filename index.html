@@ -90,10 +90,8 @@
 </head>
 
 <body class="min-h-screen">
-    <!-- 3D Background -->
     <div id="canvas-container" class="fixed top-0 left-0 w-full h-full -z-10 opacity-20"></div>
 
-    <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-black bg-opacity-80 backdrop-filter backdrop-blur-lg border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -129,7 +127,6 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
     <div
         class="mobile-menu hidden md:hidden fixed inset-0 z-40 bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg">
         <div class="flex flex-col items-center justify-center h-full">
@@ -150,7 +147,6 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
     <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div class="text-center md:text-left">
@@ -185,7 +181,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">About Me</h2>
@@ -247,7 +242,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Technical Skills</h2>
@@ -369,7 +363,6 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
     <section id="experience" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Work Experience</h2>
@@ -404,19 +397,60 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Projects</h2>
-            <p class="text-gray-400 max-w-3xl mx-auto">Some of my recent work showcasing my skills</p>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Projects & Publications</h2>
+            <p class="text-gray-400 max-w-3xl mx-auto">Some of my recent work showcasing my skills and research</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-            <a href="https://github.com/abdansykr/gephi-web-dashboard.git" target="_blank" rel="noopener noreferrer"
-                class="block group">
+            <a href="https://jurnal.iaii.or.id/index.php/JUTIF" target="_blank" rel="noopener noreferrer"
+                class="block group col-span-1 md:col-span-2 hover:no-underline">
                 <div
-                    class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105">
+                    class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-[1.02] border border-gray-700 hover:border-blue-500 relative overflow-hidden h-full">
+                    <div class="absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs font-bold px-4 py-1.5 rounded-full z-10 shadow-lg">
+                        SINTA 2 Accredited
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
+                        <div class="md:col-span-1 h-32 md:h-full bg-gray-800 bg-opacity-50 rounded-lg flex flex-col items-center justify-center border border-gray-700 shadow-inner group-hover:border-blue-700 transition-colors">
+                            <span class="text-6xl mb-1">📄</span>
+                            <span class="text-sm font-bold gradient-text">Jurnal Teknik Informatika</span>
+                        </div>
+                        
+                        <div class="md:col-span-4">
+                            <div class="text-sm text-blue-400 font-medium mb-1">Journal Publication (Accepted)</div>
+                            
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-white transition-colors text-white">SENTIMENT ANALYSIS OF E-COMMERCE REVIEWS USING FINE-TUNED INDOBERT WITH CLASS WEIGHTS STRATEGY </h3>
+                            
+                            <p class="text-gray-400 mb-4 text-sm leading-relaxed"> Qualitative analysis also successfully identified that product quality (“fresh”) and logistics efficiency ('fast') were the main drivers of satisfaction, while the main complaints centered  on the condition of the product upon arrival (“damaged,” “rotten”). This research proves that the optimized Transformer model is not only effective for sentiment classification, but also serves as a strategic tool for extracting concrete business insights.</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-gray-900 bg-opacity-70 rounded-full text-xs border border-gray-700 text-gray-300">JUTIF (Sinta 2 Acc)</span>
+                                <span class="px-3 py-1 bg-blue-900 bg-opacity-50 rounded-full text-xs text-blue-200">Python</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-50 rounded-full text-xs text-purple-200">Deep learning</span>
+                                <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs text-green-200">IndoBERT</span>
+                                <span class="px-3 py-1 bg-pink-900 bg-opacity-50 rounded-full text-xs text-pink-200">Sentiment analysis</span>
+                                <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 rounded-full text-xs text-yellow-200">Tokopedia</span>
+                            </div>
+                            
+                            <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center transition-colors">
+                                Lihat Detail Publikasi
+                                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                    </path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://github.com/abdansykr/gephi-web-dashboard.git" target="_blank" rel="noopener noreferrer"
+                class="block group hover:no-underline">
+                <div
+                    class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105 h-full">
                     <div class="mb-6 h-48 bg-gradient-to-br from-indigo-500 to-cyan-400 rounded-lg flex items-center justify-center bg-cover bg-center"
                         style="background-image: url('images/graph.png');">
                         <span class="text-4xl text-white drop-shadow-md">🕸️</span>
@@ -432,9 +466,9 @@
                         <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">Sigma.js</span>
                         <span class="px-3 py-1 bg-gray-900 bg-opacity-50 rounded-full text-xs">WebGL</span>
                     </div>
-                    <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                    <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center transition-colors">
                         View Details
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
                             </path>
@@ -444,9 +478,9 @@
             </a>
 
             <a href="https://github.com/abdansykr/goLobby_MLBB-Matchmaking-Engine.git" target="_blank"
-                rel="noopener noreferrer" class="block group">
+                rel="noopener noreferrer" class="block group hover:no-underline">
                 <div
-                    class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105">
+                    class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105 h-full">
                     <div class="mb-6 h-48 bg-gradient-to-br from-red-500 to-orange-600 rounded-lg flex items-center justify-center bg-cover bg-center"
                         style="background-image: url('images/ml.png');">
                         <span class="text-4xl text-white drop-shadow-md">🎮</span>
@@ -463,9 +497,9 @@
                         <span class="px-3 py-1 bg-red-900 bg-opacity-50 rounded-full text-xs">Redis</span>
                         <span class="px-3 py-1 bg-indigo-900 bg-opacity-50 rounded-full text-xs">WebSocket</span>
                     </div>
-                    <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                    <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center transition-colors">
                         View Details
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
                             </path>
@@ -475,14 +509,14 @@
             </a>
 
             <a href="https://github.com/abdansykr/Recommmendations-product" target="_blank" rel="noopener noreferrer"
-                class="block group">
+                class="block group hover:no-underline">
                 <div
-                    class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105">
+                    class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105 h-full">
                     <div
                         class="mb-6 h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                         <span class="text-4xl">🤖</span>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Fashion Recommendation Chatbot</h3>
+                    <h3 class="text-xl font-semibold mb-3">Fashion Recommendation Chatbot (Project)</h3>
                     <p class="text-gray-400 mb-4">A Large Language Model (LLM) chatbot that provides personalized outfit
                         suggestions based on user preferences and current trends.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
@@ -491,9 +525,9 @@
                         <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">MongoDB</span>
                         <span class="px-3 py-1 bg-pink-900 bg-opacity-50 rounded-full text-xs">Flask</span>
                     </div>
-                    <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                    <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center transition-colors">
                         View Details
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
                             </path>
@@ -503,9 +537,9 @@
             </a>
 
             <a href="https://github.com/abdansykr/gotokobiru" target="_blank" rel="noopener noreferrer"
-                class="block group">
+                class="block group hover:no-underline">
                 <div
-                    class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105">
+                    class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105 h-full">
                     <div
                         class="mb-6 h-48 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
                         <span class="text-4xl">🛒</span>
@@ -520,9 +554,9 @@
                         <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 rounded-full text-xs">Docker</span>
                         <span class="px-3 py-1 bg-pink-900 bg-opacity-50 rounded-full text-xs">MongoDB</span>
                     </div>
-                    <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                    <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center transition-colors">
                         View Details
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
                             </path>
@@ -532,78 +566,73 @@
             </a>
 
             <a href="https://github.com/abdansykr/go-cinema-ticketing" target="_blank" rel="noopener noreferrer"
-                class="block group">
-                <div data-modal-target="#kumpul-modal" class="block group cursor-pointer">
-                    <div
-                        class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105">
-                        <div class="mb-6 h-48 rounded-lg flex items-center justify-center bg-cover bg-center"
-                            style="background-image: url('images/bioskop.png');">
-                            <span class="text-6xl text-white text-opacity-80 drop-shadow-lg">🎟️</span>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Cinema Ticket Booking System</h3>
-                        <p class="text-gray-400 mb-4">A backend system with a microservice architecture. It features a
-                            real-time, race-condition-free seat locking system using Redis, asynchronous communication
-                            via RabbitMQ, and JWT-based API authorization.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-900 bg-opacity-50 rounded-full text-xs">Golang</span>
-                            <span class="px-3 py-1 bg-purple-900 bg-opacity-50 rounded-full text-xs">RESTful API</span>
-                            <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">PostgreSQL</span>
-                            <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 rounded-full text-xs">Docker</span>
-                            <span class="px-3 py-1 bg-pink-900 bg-opacity-50 rounded-full text-xs">Redis</span>
-                            <span class="px-3 py-1 bg-red-900 bg-opacity-50 rounded-full text-xs">RabbitMQ</span>
-                        </div>
-                        <span
-                            class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center">
-                            View Details
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                                </path>
-                            </svg>
-                        </span>
+                class="block group hover:no-underline">
+                <div class="card-glass p-8 rounded-xl h-full transition-all duration-300 glow group-hover:transform group-hover:scale-105">
+                    <div class="mb-6 h-48 bg-gradient-to-br from-amber-400 to-red-600 rounded-lg flex items-center justify-center bg-cover bg-center"
+                        style="background-image: url('images/bioskop.png');">
+                        <span class="text-6xl text-white text-opacity-80 drop-shadow-lg">🎟️</span>
                     </div>
+                    <h3 class="text-xl font-semibold mb-3">Cinema Ticket Booking System</h3>
+                    <p class="text-gray-400 mb-4">A backend system with a microservice architecture. It features a
+                        real-time, race-condition-free seat locking system using Redis, asynchronous communication
+                        via RabbitMQ, and JWT-based API authorization.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 rounded-full text-xs">Golang</span>
+                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 rounded-full text-xs">RESTful API</span>
+                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">PostgreSQL</span>
+                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 rounded-full text-xs">Docker</span>
+                        <span class="px-3 py-1 bg-pink-900 bg-opacity-50 rounded-full text-xs">Redis</span>
+                        <span class="px-3 py-1 bg-red-900 bg-opacity-50 rounded-full text-xs">RabbitMQ</span>
+                    </div>
+                    <span
+                        class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center transition-colors">
+                        View Details
+                        <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </span>
                 </div>
             </a>
 
             <a href="https://github.com/abdansykr/gokumpul-app" target="_blank" rel="noopener noreferrer"
-                class="block group">
-                <div data-modal-target="#kumpul-modal" class="block group cursor-pointer">
-                    <div
-                        class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105">
-                        <div class="mb-6 h-48 rounded-lg flex items-center justify-center bg-cover bg-center"
-                            style="background-image: url('images/kumpul-map-preview.jpg');">
-                            <span class="text-6xl text-white text-opacity-80 drop-shadow-lg">🗺️</span>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Kumpul Event Aggregator</h3>
-                        <p class="text-gray-400 mb-4">Engineered a full-stack web application to connect users for local
-                            offline events using Go (Gin) for the backend and Vue.js for the frontend. Implemented an
-                            interactive map with Leaflet.js and the Geolocation API for intuitive event discovery and
-                            creation.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-900 bg-opacity-50 rounded-full text-xs">Golang</span>
-                            <span class="px-3 py-1 bg-purple-900 bg-opacity-50 rounded-full text-xs">Vue.js</span>
-                            <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">MongoDB</span>
-                            <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 rounded-full text-xs">Docker</span>
-                            <span class="px-3 py-1 bg-pink-900 bg-opacity-50 rounded-full text-xs">Leaflet.js</span>
-                            <span class="px-3 py-1 bg-red-900 bg-opacity-50 rounded-full text-xs">RESTful API</span>
-                        </div>
-                        <span
-                            class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center">
-                            View Details
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                                </path>
-                            </svg>
-                        </span>
+                class="block group hover:no-underline">
+                <div
+                    class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105 h-full">
+                    <div class="mb-6 h-48 rounded-lg flex items-center justify-center bg-cover bg-center"
+                        style="background-image: url('images/kumpul-map-preview.jpg');">
+                        <span class="text-6xl text-white text-opacity-80 drop-shadow-lg">🗺️</span>
                     </div>
+                    <h3 class="text-xl font-semibold mb-3">Kumpul Event Aggregator</h3>
+                    <p class="text-gray-400 mb-4">Engineered a full-stack web application to connect users for local
+                        offline events using Go (Gin) for the backend and Vue.js for the frontend. Implemented an
+                        interactive map with Leaflet.js and the Geolocation API for intuitive event discovery and
+                        creation.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 rounded-full text-xs">Golang</span>
+                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 rounded-full text-xs">Vue.js</span>
+                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">MongoDB</span>
+                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 rounded-full text-xs">Docker</span>
+                        <span class="px-3 py-1 bg-pink-900 bg-opacity-50 rounded-full text-xs">Leaflet.js</span>
+                        <span class="px-3 py-1 bg-red-900 bg-opacity-50 rounded-full text-xs">RESTful API</span>
+                    </div>
+                    <span
+                        class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center transition-colors">
+                        View Details
+                        <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </span>
                 </div>
             </a>
 
             <a href="https://github.com/abdansykr/analisis-sentimen-transformer-id/tree/master" target="_blank"
-                rel="noopener noreferrer" class="block group">
+                rel="noopener noreferrer" class="block group hover:no-underline">
                 <div
-                    class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105">
+                    class="card-glass p-8 rounded-xl h-full transition-all duration-300 glow group-hover:transform group-hover:scale-105 h-full">
                     <div
                         class="mb-6 h-48 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center">
                         <span class="text-4xl">📊</span>
@@ -617,9 +646,9 @@
                         <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">Deep Learning</span>
                         <span class="px-3 py-1 bg-pink-900 bg-opacity-50 rounded-full text-xs">IndoBERT</span>
                     </div>
-                    <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                    <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center transition-colors">
                         View Details
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
                             </path>
@@ -628,9 +657,8 @@
                 </div>
             </a>
 
-
             <div
-                class="card-glass p-8 rounded-xl transition-all duration-300 glow group-hover:transform group-hover:scale-105">
+                class="card-glass p-8 rounded-xl h-full transition-all duration-300 glow hover:transform hover:scale-105">
                 <div
                     class="mb-6 h-48 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg flex items-center justify-center">
                     <span class="text-4xl">🔌</span>
@@ -643,7 +671,7 @@
                     <span class="px-3 py-1 bg-purple-900 bg-opacity-50 rounded-full text-xs">Docker</span>
                     <span class="px-3 py-1 bg-green-900 bg-opacity-50 rounded-full text-xs">Microservices</span>
                 </div>
-                <span class="text-blue-400 group-hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                <span class="text-blue-400 text-sm font-medium inline-flex items-center">
                     View Details
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -655,7 +683,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Get In Touch</h2>
@@ -756,7 +783,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
